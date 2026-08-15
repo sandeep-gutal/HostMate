@@ -14,18 +14,41 @@ export function newHostToken() {
   return randomBytes(24).toString("base64url");
 }
 
+function asEvent(row: Record<string, unknown> | undefined): EventRow | null {
+  if (!row) return null;
+  const date = row.date;
+  return {
+    id: String(row.id),
+    name: String(row.name),
+    type: String(row.type),
+    date: date == null ? null : String(date).slice(0, 10),
+    tone: String(row.tone),
+    language: String(row.language),
+    expected_audience:
+      row.expected_audience == null ? null : Number(row.expected_audience),
+    duration_minutes:
+      row.duration_minutes == null ? null : Number(row.duration_minutes),
+    host_token: String(row.host_token),
+    template_id: row.template_id == null ? null : String(row.template_id),
+    created_at:
+      row.created_at instanceof Date
+        ? row.created_at.toISOString()
+        : String(row.created_at ?? ""),
+  };
+}
+
 export async function getEventByToken(token: string) {
   const sql = getSql();
   const rows = await sql`
     SELECT * FROM events WHERE host_token = ${token} LIMIT 1
   `;
-  return (rows[0] as EventRow | undefined) ?? null;
+  return asEvent(rows[0] as Record<string, unknown> | undefined);
 }
 
 export async function getEventById(id: string) {
   const sql = getSql();
   const rows = await sql`SELECT * FROM events WHERE id = ${id} LIMIT 1`;
-  return (rows[0] as EventRow | undefined) ?? null;
+  return asEvent(rows[0] as Record<string, unknown> | undefined);
 }
 
 export async function createEvent(input: {
@@ -69,7 +92,8 @@ export async function createEvent(input: {
     )
     RETURNING *
   `;
-  const event = rows[0] as EventRow;
+  const event = asEvent(rows[0] as Record<string, unknown>);
+  if (!event) throw new Error("Failed to create event.");
 
   if (template) {
     await cloneTemplateIntoEvent(event.id, template.id);
@@ -380,9 +404,21 @@ export async function deleteActivity(id: string, eventId: string) {
 
 export async function listParticipants(eventId: string) {
   const sql = getSql();
-  return (await sql`
+  const rows = await sql`
     SELECT * FROM participants WHERE event_id = ${eventId} ORDER BY created_at DESC
-  `) as ParticipantRow[];
+  `;
+  return rows.map((row) => ({
+    id: String(row.id),
+    event_id: String(row.event_id),
+    name: String(row.name),
+    phone_or_email: row.phone_or_email == null ? null : String(row.phone_or_email),
+    fun_fact: row.fun_fact == null ? null : String(row.fun_fact),
+    rsvp: String(row.rsvp ?? "yes"),
+    created_at:
+      row.created_at instanceof Date
+        ? row.created_at.toISOString()
+        : String(row.created_at ?? ""),
+  })) as ParticipantRow[];
 }
 
 export async function addParticipant(input: {

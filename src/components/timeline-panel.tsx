@@ -5,49 +5,7 @@ import { SortableList } from "@/components/sortable-list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { reorderTimelineAction, updateTimelineDurationAction } from "@/lib/actions";
-import type {
-  ActivityRow,
-  ScriptSectionRow,
-  SubmissionRow,
-  TimelineItemRow,
-} from "@/lib/types";
-
-export type TimelineViewItem = TimelineItemRow & {
-  title: string;
-  detail: string;
-};
-
-export function buildTimelineView(
-  timeline: TimelineItemRow[],
-  scripts: ScriptSectionRow[],
-  submissions: SubmissionRow[],
-  activities: ActivityRow[]
-): TimelineViewItem[] {
-  return timeline.map((item) => {
-    if (item.kind === "script") {
-      const ref = scripts.find((s) => s.id === item.ref_id);
-      return {
-        ...item,
-        title: ref?.title ?? "Script",
-        detail: ref?.content?.slice(0, 140) ?? "",
-      };
-    }
-    if (item.kind === "submission") {
-      const ref = submissions.find((s) => s.id === item.ref_id);
-      return {
-        ...item,
-        title: ref?.title ?? "Performance",
-        detail: [ref?.type, ref?.note, ref?.link].filter(Boolean).join(" · "),
-      };
-    }
-    const ref = activities.find((s) => s.id === item.ref_id);
-    return {
-      ...item,
-      title: ref?.title ?? "Activity",
-      detail: ref?.description?.slice(0, 140) ?? "",
-    };
-  });
-}
+import type { TimelineViewItem } from "@/lib/timeline";
 
 export function TimelinePanel({
   token,
@@ -67,7 +25,7 @@ export function TimelinePanel({
           Estimated total: <span className="text-foreground">{total} min</span>
         </p>
         <Button asChild>
-          <Link href={`/h/${token}/present`}>Open presenter mode</Link>
+          <Link href={`/h/${encodeURIComponent(token)}/present`}>Open presenter mode</Link>
         </Button>
       </div>
       {ids.length === 0 ? (

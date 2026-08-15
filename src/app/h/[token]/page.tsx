@@ -4,6 +4,7 @@ import { HostDashboard } from "@/components/host-dashboard";
 import { getHostBundle } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 function originFromHeaders() {
   const h = headers();
@@ -13,7 +14,7 @@ function originFromHeaders() {
 }
 
 export default async function HostPage({ params }: { params: { token: string } }) {
-  const bundle = await getHostBundle(params.token);
+  const bundle = await getHostBundle(decodeURIComponent(params.token));
   if (!bundle) notFound();
 
   return (

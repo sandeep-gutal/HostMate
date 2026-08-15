@@ -35,8 +35,12 @@ export function GuestPortal({ event }: { event: EventRow }) {
           <form
             className="grid gap-3"
             action={async (formData) => {
-              const result = await publicRsvpAction(formData);
-              setRsvpMsg(result?.error || result?.message || null);
+              try {
+                const result = await publicRsvpAction(formData);
+                setRsvpMsg(result?.error || result?.message || "Saved.");
+              } catch (err) {
+                setRsvpMsg(err instanceof Error ? err.message : "Could not save RSVP.");
+              }
             }}
           >
             <input type="hidden" name="event_id" value={event.id} />
@@ -82,8 +86,12 @@ export function GuestPortal({ event }: { event: EventRow }) {
           <form
             className="grid gap-3"
             action={async (formData) => {
-              const result = await publicSubmitAction(formData);
-              setSubMsg(result?.error || result?.message || null);
+              try {
+                const result = await publicSubmitAction(formData);
+                setSubMsg(result?.error || result?.message || "Saved.");
+              } catch (err) {
+                setSubMsg(err instanceof Error ? err.message : "Could not save submission.");
+              }
             }}
           >
             <input type="hidden" name="event_id" value={event.id} />

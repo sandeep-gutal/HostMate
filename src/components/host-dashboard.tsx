@@ -6,7 +6,8 @@ import { CopyButton } from "@/components/copy-button";
 import { PeoplePanel } from "@/components/people-panel";
 import { ScriptHelp } from "@/components/script-help";
 import { SongsPanel } from "@/components/songs-panel";
-import { TimelinePanel, buildTimelineView } from "@/components/timeline-panel";
+import { TimelinePanel } from "@/components/timeline-panel";
+import { buildTimelineView } from "@/lib/timeline";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -84,7 +85,7 @@ export function HostDashboard({
           <TabsTrigger value="songs">Songs</TabsTrigger>
           <TabsTrigger value="activities">Activities</TabsTrigger>
           <TabsTrigger value="show">Run of show</TabsTrigger>
-          <TabsTrigger value="people">People</TabsTrigger>
+          <TabsTrigger value="people">People ({participants.length})</TabsTrigger>
         </TabsList>
         <TabsContent value="script">
           <ScriptHelp event={event} sections={scripts} />
@@ -99,7 +100,7 @@ export function HostDashboard({
           <TimelinePanel token={event.host_token} items={items} />
         </TabsContent>
         <TabsContent value="people">
-          <PeoplePanel people={participants} />
+          <PeoplePanel token={event.host_token} people={participants} />
         </TabsContent>
       </Tabs>
     </div>

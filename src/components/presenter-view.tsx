@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import type { TimelineViewItem } from "@/components/timeline-panel";
+import type { TimelineViewItem } from "@/lib/timeline";
 
 export function PresenterView({
   token,
@@ -26,7 +26,7 @@ export function PresenterView({
       <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-black px-4 text-white">
         <p className="text-2xl">No run-of-show items yet.</p>
         <Button asChild variant="secondary">
-          <Link href={`/h/${token}`}>Back to host</Link>
+          <Link href={`/h/${encodeURIComponent(token)}`}>Back to host</Link>
         </Button>
       </main>
     );
@@ -39,7 +39,7 @@ export function PresenterView({
         <span>
           {index + 1} / {items.length} · ~{remaining} min left
         </span>
-        <Link className="underline" href={`/h/${token}`}>
+        <Link className="underline" href={`/h/${encodeURIComponent(token)}`}>
           Exit
         </Link>
       </div>
