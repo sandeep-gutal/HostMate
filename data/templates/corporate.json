@@ -1,0 +1,66 @@
+{
+  "id": "corporate-mixer",
+  "name": "Corporate / Team Mixer",
+  "type": "Corporate",
+  "script_sections": [
+    {
+      "title": "Opening",
+      "duration_minutes": 4,
+      "content": "Good evening, and welcome.\n\nThis is not an all-hands, not a performance review, and not a meeting that could have been an email. It is a mixer: short remarks, a few structured activities so we don't all cling to the people we already sit with, optional performances if you signed up, and enough time to actually talk.\n\nI am [HOST NAME]. Phones can stay out for photos. Slack can wait until tomorrow. If your manager is here, they are off the clock too — treat them accordingly."
+    },
+    {
+      "title": "House Rules",
+      "duration_minutes": 2,
+      "content": "Three rules:\n1. Name tags are not optional. We do not work in a company of mind-readers.\n2. Mix tables at least once. If you came with your entire squad, split after the first activity.\n3. Keep stories kind. What happens at the mixer may still appear in the group chat, so choose your anecdotes like they have an audience — because they do."
+    },
+    {
+      "title": "Segment Transitions",
+      "duration_minutes": 3,
+      "content": "INTO INTROS: We'll do a fast round so new folks are not 'the person from the other floor' all night.\n\nINTO ACTIVITIES: Games are low-stakes on purpose. Winning is optional. Talking to someone new is the actual KPI.\n\nINTO PERFORMANCES: If you booked a song or a slot, you're in the running order. If you didn't, you are the audience, which is also a role.\n\nINTO CLOSE: I'll flag last call for food and a one-minute thank you so we don't fade out like a bad stand-up."
+    },
+    {
+      "title": "Closing",
+      "duration_minutes": 3,
+      "content": "Thank you for showing up in person — still the underrated collaboration tool.\nThank you to whoever booked the room, the food, and the aux cable.\nIf you met someone new, send them a two-line note tomorrow while you still remember why they were interesting.\n\nTravel safe. See you at work, where we will pretend this was slightly more formal than it was."
+    }
+  ],
+  "songs": [
+    {
+      "title": "Instrumental playlist (arrival)",
+      "note": "Background only. No lyric-heavy ballads during arrival — people need to talk.",
+      "duration": 10
+    },
+    {
+      "title": "Open mic / karaoke slot",
+      "note": "Optional. Put after icebreakers, before food peak. Cap each slot.",
+      "duration": 4
+    }
+  ],
+  "activities": [
+    {
+      "title": "Two Truths and a Lie (work-safe)",
+      "duration_minutes": 10,
+      "description": "Tables of 6. Each person: two true facts, one lie, none about salary or performance ratings. Group votes. Rotate one person per table after the round."
+    },
+    {
+      "title": "One-Word Check-in",
+      "duration_minutes": 5,
+      "description": "Go around a circle: name, team, one word for the week. Host models a non-corporate word ('rain', 'deadlines', 'dosa'). Fast and equalising."
+    },
+    {
+      "title": "Human Bingo",
+      "duration_minutes": 12,
+      "description": "Grid of prompts: 'has worked here under 6 months', 'speaks 3 languages', 'has never used the office microwave'. First to get a line wins a small prize. Must ask people, not shout across the room."
+    },
+    {
+      "title": "Desert Island Skill",
+      "duration_minutes": 8,
+      "description": "Pairs: 'What non-job skill would you bring to a desert island?' 90 seconds each, then swap partners once. Better than 'so what do you do?'"
+    },
+    {
+      "title": "Appreciation Round (optional)",
+      "duration_minutes": 6,
+      "description": "Volunteers only. Complete: 'I want to thank ___ for ___.' Keep it specific and short. Skip if the culture isn't there yet — never force it."
+    }
+  ]
+}

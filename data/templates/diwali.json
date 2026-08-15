@@ -1,0 +1,81 @@
+{
+  "id": "diwali-celebration",
+  "name": "Diwali Celebration",
+  "type": "Diwali",
+  "script_sections": [
+    {
+      "title": "Opening",
+      "duration_minutes": 5,
+      "content": "Shubh Deepavali, everyone.\n\nWelcome to our society Diwali night — the one evening the corridor lights are supposed to outshine the group chat.\n\nDiwali is the story of returning home, of light after a long road. Tonight we keep it simple: a short welcome, a few performances you signed up for, games for the kids (and the kids-at-heart), and then food, because no festival in this country is complete until someone asks 'sirf itna hi?'\n\nI am [HOST NAME]. If the mic squeaks, consider it a cracker we didn't have to buy."
+    },
+    {
+      "title": "Lamp Lighting / Rangoli Moment",
+      "duration_minutes": 6,
+      "content": "We invite [ELDERS / SOCIETY COMMITTEE] to light the diyas / lamp.\n\n[Pause]\n\nWhile the lamps catch, a thought: we decorate the building because we live with each other, not just next to each other. If you fought with a neighbour over parking this year, tonight is a decent time to offer a ladoo first and a lecture later.\n\nPlease keep fireworks to the designated time and area. Pets, patients, and the security uncle did not RSVP for a war movie."
+    },
+    {
+      "title": "Segment Transitions",
+      "duration_minutes": 4,
+      "content": "INTO PERFORMANCES: The diyas are lit. Next, the people who actually practised. I'll call names in running order — songs, dances, and that one recitation someone promised on the group.\n\nINTO GAMES: If you didn't perform, you still have a job: play. We have icebreakers that require no talent, only the willingness to look slightly silly in festive clothes.\n\nINTO CLOSING: Before we lose everyone to the dessert table, a short thank you, then eat. The rangoli is not a buffet queue. The buffet is the buffet queue."
+    },
+    {
+      "title": "Closing / Vote of Thanks",
+      "duration_minutes": 3,
+      "content": "Thank you to everyone who put up lights, drew rangoli, and didn't complain (much) about the rehearsal noise.\nThank you to our performers and to the parents who became costume departments overnight.\nThank you to the committee, the security staff, and whoever remembered extra plates.\n\nShubh Deepavali. Go light something small, eat something sweet, and text your building group only with photos, not parking disputes, until tomorrow."
+    }
+  ],
+  "songs": [
+    {
+      "title": "Diwali Diwali",
+      "note": "Upbeat opener while people settle and find seats.",
+      "duration": 3
+    },
+    {
+      "title": "Chalo Jaane Do — festive mix",
+      "note": "Optional background while rangoli / diya photos happen.",
+      "duration": 3
+    },
+    {
+      "title": "Aayi Diwali",
+      "note": "Kids' choir friendly; put this early so children aren't tired.",
+      "duration": 3
+    },
+    {
+      "title": "Give Me Some Sunshine (acoustic, optional contrast)",
+      "note": "Only if the tone is mixed/fun — skip if you want a fully traditional night.",
+      "duration": 4
+    },
+    {
+      "title": "Dhol / Garba set",
+      "note": "If your crowd will dance — schedule after speeches, before food.",
+      "duration": 8
+    }
+  ],
+  "activities": [
+    {
+      "title": "Diya Relay",
+      "duration_minutes": 6,
+      "description": "Teams carry an unlit diya on a spoon across the lawn. Drop it and restart. First team to place 5 diyas on the rangoli border wins. No real flame during the race."
+    },
+    {
+      "title": "Guess the Mithai",
+      "duration_minutes": 7,
+      "description": "Blindfold volunteers. They taste (or smell) common sweets and guess. Keep allergies in mind. Hilarious for adults; supervise kids."
+    },
+    {
+      "title": "Rangoli Speed Round",
+      "duration_minutes": 10,
+      "description": "Each family gets a small square and 8 minutes. Theme: 'light'. Judging is applause, not a committee meeting."
+    },
+    {
+      "title": "Festival Charades",
+      "duration_minutes": 8,
+      "description": "Act out: lighting a diya, bursting a (safe) sparkler, calling relatives, standing in a mithai queue, explaining Diwali to a foreign colleague. No speaking."
+    },
+    {
+      "title": "One Good Thing This Year",
+      "duration_minutes": 6,
+      "description": "Mic goes around a small circle of volunteers. Each person names one good thing from the year in one sentence. Warm, not a TED talk. Host cuts anyone over 20 seconds."
+    }
+  ]
+}
