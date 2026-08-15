@@ -1,0 +1,76 @@
+{
+  "id": "kids-birthday",
+  "name": "Kids Birthday Party",
+  "type": "Birthday",
+  "script_sections": [
+    {
+      "title": "Opening",
+      "duration_minutes": 3,
+      "content": "Hello friends!\n\nToday we are here because [CHILD'S NAME] is turning [AGE] — which officially means more candles, more cake, and a very important job for every guest: help us make this the loudest, kindest party of the week.\n\nI am [HOST NAME]. Here's the plan: a welcome, a few games, songs and performances if anyone signed up, cake, and gifts at the end so we don't lose the wrapping paper in the first five minutes.\n\nIf you are a grown-up: you may sit. If you are a child: you may bounce, but please bounce away from the cake."
+    },
+    {
+      "title": "Birthday Child Intro",
+      "duration_minutes": 3,
+      "content": "Let's hear it for [CHILD'S NAME]!\n\n[CHILD'S NAME] likes [HOBBY / FUN FACT]. Their current favourite song is probably whatever we are about to play. Their current favourite people are all of you — plus whoever brought the extra chips.\n\n[CHILD'S NAME], wave to your friends. Friends, wave back like you practised."
+    },
+    {
+      "title": "Segment Transitions",
+      "duration_minutes": 3,
+      "content": "INTO GAMES: Energy is high. Good. Games first, cake second, so we don't play tag with icing on our hands.\n\nINTO SONGS: If you submitted a song or a dance, you're up after this game. Parents, this is your warning to open the camera app.\n\nINTO CAKE: When I say cake, please form a loose half-circle, not a rugby scrum. The birthday child blows the candles. Everyone else sings. Then we eat like we mean it."
+    },
+    {
+      "title": "Closing / Cake & Thanks",
+      "duration_minutes": 4,
+      "content": "Time for the birthday song and the cake.\n\n[Happy Birthday / birthday song in your language]\n\nThank you, friends, for coming. Thank you, parents, for the drops and the patience. Thank you, [CHILD'S NAME], for being the reason we bought this many balloons.\n\nReturn gifts are at [PLACE]. Please say bye to [CHILD'S NAME] before you run to the car.\n\nHappy birthday again. Go play — carefully!"
+    }
+  ],
+  "songs": [
+    {
+      "title": "Happy Birthday",
+      "note": "The required number. Do it once, clearly, near the cake — not as background noise.",
+      "duration": 2
+    },
+    {
+      "title": "If You're Happy and You Know It",
+      "note": "Warm-up while late kids arrive. Actions included.",
+      "duration": 3
+    },
+    {
+      "title": "The Wheels on the Bus / local equivalent",
+      "note": "For younger crowds. Skip if the guest list is mostly 8+.",
+      "duration": 3
+    },
+    {
+      "title": "Kid's favourite cartoon / film song",
+      "note": "Ask the birthday child in advance. Put this right before cake for a peak-energy moment.",
+      "duration": 3
+    }
+  ],
+  "activities": [
+    {
+      "title": "Pass the Parcel",
+      "duration_minutes": 8,
+      "description": "Music on, parcel moves. Music off, that child unwraps one layer. Keep layers equal to the number of kids if you can. No one should go home without a turn if possible."
+    },
+    {
+      "title": "Statue / Freeze Dance",
+      "duration_minutes": 5,
+      "description": "Dance when the music plays, freeze when it stops. Last mover is out — or just laugh and restart if the group is young."
+    },
+    {
+      "title": "Balloon Keep-Up",
+      "duration_minutes": 4,
+      "description": "One balloon, whole group, don't let it touch the floor. Add a second balloon when it looks too easy. Outdoor-friendly."
+    },
+    {
+      "title": "Treasure Hunt (5 clues)",
+      "duration_minutes": 12,
+      "description": "Simple picture or one-line clues around the house/garden ending at a small prize box. Pair younger kids with an older buddy."
+    },
+    {
+      "title": "Two Truths (kids version)",
+      "duration_minutes": 6,
+      "description": "Each volunteer: two true things ('I have a dog', 'I can whistle') and one fib. Friends guess. Keep it kind; host models a silly example first."
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "annual-day-society",
+  "name": "Annual Day / Society Function",
+  "type": "Annual Day",
+  "script_sections": [
+    {
+      "title": "Opening",
+      "duration_minutes": 6,
+      "content": "Good evening, residents, guests, and the people who only come downstairs for the AGM and the annual day.\n\nWelcome to [SOCIETY NAME]'s annual function. This is our once-a-year reminder that we share more than a gate code: we share water tanks, festivals, and very strong opinions about the lift.\n\nTonight's plan is simple. A short welcome, a look at the year that was, performances you signed up for, a few games so the children don't annex the stage, and a vote of thanks before dinner — I have been warned not to delay dinner.\n\nI am [HOST NAME], your host. If I mispronounce a name, correct me; if I mispronounce the society name, we have bigger problems."
+    },
+    {
+      "title": "Year in Review (light)",
+      "duration_minutes": 7,
+      "content": "A 90-second version of the year, without minutes of the meeting:\n- We kept the lights on, the tanks reasonably full, and the group chat reasonably on fire.\n- Thank you to the committee members who actually attended the boring meetings so the rest of us could attend the interesting ones.\n- If we completed a repair, name it. If we didn't, skip it — this is a function, not a FIR.\n\nPlease welcome [SECRETARY / CHAIR] for a two-minute note. Two. I have a stopwatch and no shame."
+    },
+    {
+      "title": "Segment Transitions",
+      "duration_minutes": 4,
+      "content": "INTO CULTURALS: Official remarks are over. Unofficial talent begins. I'll read the running order. Performers, please be ready two acts before yours. The wings of this 'stage' are a garden path — don't get lost in a conversation with the uncle who 'just had one question'.\n\nINTO GAMES: Winners of the cultural round get applause. Winners of the games get bragging rights in the lift tomorrow.\n\nINTO DINNER: When you hear the vote of thanks, it is not a suggestion. It is a dinner bell in slow motion."
+    },
+    {
+      "title": "Closing / Vote of Thanks",
+      "duration_minutes": 4,
+      "content": "Thank you to the organising team, the volunteers, the security and housekeeping staff who stayed late, and every family that rehearsed in a 2BHK without a noise complaint becoming a legal notice.\n\nThank you to our performers and to the residents who clapped even for the acts that were... brave.\n\nPlease proceed to dinner. Take a plate, leave a little for the last row, and if you have feedback, there is a committee — but maybe tomorrow.\n\nGood night, and see you at the next festival, AGM, or water-tanker emergency, whichever comes first."
+    }
+  ],
+  "songs": [
+    {
+      "title": "Society anthem / welcome instrumental",
+      "note": "Soft instrumental while people find seats. Keep lyrics-free so speeches can start over it.",
+      "duration": 4
+    },
+    {
+      "title": "Classic Bollywood medley",
+      "note": "Crowd-pleaser for mixed ages; put in the middle of the cultural block.",
+      "duration": 6
+    },
+    {
+      "title": "Kids' group song",
+      "note": "Schedule early. Tired children are a risk to the sound system.",
+      "duration": 4
+    },
+    {
+      "title": "Senior residents' favourite",
+      "note": "Ask the committee which film song the 60+ crowd actually wants. Don't guess.",
+      "duration": 4
+    }
+  ],
+  "activities": [
+    {
+      "title": "Find Your Wing",
+      "duration_minutes": 6,
+      "description": "Call out a wing or building letter. That group stands and must complete a 10-second cheer. Instant mixing, instant noise, good photos."
+    },
+    {
+      "title": "Guess the Resident",
+      "duration_minutes": 8,
+      "description": "Host reads a fun fact submitted on the public form (no names). Audience guesses who it is. Use only facts people agreed to share."
+    },
+    {
+      "title": "Musical Chairs — Society Edition",
+      "duration_minutes": 8,
+      "description": "Classic game. Music: old Hindi film songs. Last person sitting names one thing they like about living here. Then they are out. Kind, not brutal."
+    },
+    {
+      "title": "One-Minute Talent",
+      "duration_minutes": 10,
+      "description": "Open mic, 60 seconds, no karaoke machine required: joke, shloka, whistle, magic trick. Host is the timer. Cuts are merciful and public."
+    },
+    {
+      "title": "Committee vs Residents Quiz",
+      "duration_minutes": 8,
+      "description": "Five light questions: year the society was registered, colour of the old gate, name of the watchman who retired. No actual politics. Prize: first in the dinner line."
+    }
+  ]
+}

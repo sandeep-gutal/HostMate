@@ -1,0 +1,81 @@
+{
+  "id": "independence-day-india",
+  "name": "Independence Day (India)",
+  "type": "Independence Day",
+  "script_sections": [
+    {
+      "title": "Opening",
+      "duration_minutes": 5,
+      "content": "Good morning, neighbours and friends.\n\nWelcome to our Independence Day gathering. Today we remember 15 August 1947 — not as a date in a textbook, but as a promise we still keep: that this colony of homes, this society, this country, belongs to all of us.\n\nBefore we begin, a request: phones on silent, hearts on full volume. We have a flag to hoist, songs to sing, and a few games so the kids don't outrun the uncles.\n\nI am [HOST NAME], and it is my honour to walk us through the morning."
+    },
+    {
+      "title": "Flag Hoisting",
+      "duration_minutes": 8,
+      "content": "We now invite [CHIEF GUEST / SOCIETY PRESIDENT] to hoist the national flag.\n\nPlease stand. Those who can, please face the flag.\n\n[Pause for hoisting]\n\nWe will now sing the National Anthem. Please remain standing until it ends.\n\n[Jana Gana Mana]\n\nThank you. You may be seated.\n\nA reminder from the flag code: the Tiranga is not a costume, not a selfie prop, and not something we let touch the ground. Treat it the way we treat the people who earned it."
+    },
+    {
+      "title": "Segment Transitions",
+      "duration_minutes": 4,
+      "content": "INTO SONGS: The anthem is our official voice. What comes next is our unofficial one — the songs we grew up humming on the radio, in school assemblies, and in traffic. First up is our planned patriotic set. If you submitted a song, you're in the running order I'll announce in a moment.\n\nINTO ICEBREAKERS: Standing still is patriotic. Moving around is also patriotic, especially if it stops the aunties from forming a complaint committee. Let's play a few short games — nothing that requires a degree, everything that requires a smile.\n\nINTO CLOSING: We've hoisted, we've sung, we've slightly embarrassed ourselves in public. That is a successful 15th August. Stay for tea; leave with the feeling that this society is more than a WhatsApp group."
+    },
+    {
+      "title": "Closing / Vote of Thanks",
+      "duration_minutes": 4,
+      "content": "A short vote of thanks.\n\nTo [CHIEF GUEST] for hoisting the flag.\nTo every volunteer who set up chairs, speakers, and the tea table before the rest of us found our slippers.\nTo the children who practised songs louder than the adults practised patience.\nTo every resident who showed up — presence is the real decoration.\n\nJai Hind. Please join us for refreshments. The national anthem is over; the national snack is not."
+    }
+  ],
+  "songs": [
+    {
+      "title": "Jana Gana Mana",
+      "note": "National Anthem — play immediately after flag hoisting. Full version, everyone standing.",
+      "duration": 2
+    },
+    {
+      "title": "Vande Mataram",
+      "note": "Great for the flag-hoisting moment or right after the anthem, before speeches.",
+      "duration": 3
+    },
+    {
+      "title": "Ae Watan — Raazi",
+      "note": "Modern patriotic number; works well if you have a soloist or a kids' choir.",
+      "duration": 4
+    },
+    {
+      "title": "Sandese Aate Hain",
+      "note": "Border — emotional middle of the programme; keep tissues near the aunties.",
+      "duration": 5
+    },
+    {
+      "title": "Maa Tujhe Salaam",
+      "note": "A.R. Rahman — strong closer before vote of thanks if the crowd is still standing.",
+      "duration": 4
+    }
+  ],
+  "activities": [
+    {
+      "title": "Name That Freedom Fighter",
+      "duration_minutes": 8,
+      "description": "Host reads a one-line clue (\"lawyer from Porbandar\", \"nightingale of India\"). First team to shout the name scores a point. Keep it to 8 clues so it stays brisk. Prize: extra samosa."
+    },
+    {
+      "title": "Tiranga Outfit Relay",
+      "duration_minutes": 6,
+      "description": "Three teams. Each team must assemble saffron, white, and green using only items already on people (dupattas, caps, bags). First complete 'flag' wins. No buying, no leaving the lawn."
+    },
+    {
+      "title": "Two Truths and a Tricolour Lie",
+      "duration_minutes": 8,
+      "description": "Volunteers share two true facts about their family and Independence Day plus one lie. Audience votes. Classic icebreaker, patriotic twist."
+    },
+    {
+      "title": "Human Map of India",
+      "duration_minutes": 5,
+      "description": "Kids stand where they think their home state sits on an imaginary map of India. Host 'corrects' the geography. Loud, funny, photo-friendly."
+    },
+    {
+      "title": "Jai Hind Speed Intro",
+      "duration_minutes": 6,
+      "description": "Each person has 15 seconds: name, wing/flat, and one thing they love about India that is not food. Timer is strict. Great for mixing wings that never talk."
+    }
+  ]
+}
