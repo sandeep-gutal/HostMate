@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Newsreader } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,7 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("dark", geistSans.variable, geistMono.variable, newsreader.variable)}>
-      <body className="min-h-dvh bg-background font-sans text-foreground antialiased">{children}</body>
+      <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
