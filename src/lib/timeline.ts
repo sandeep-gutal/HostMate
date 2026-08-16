@@ -8,6 +8,7 @@ import type {
 export type TimelineViewItem = TimelineItemRow & {
   title: string;
   detail: string;
+  link: string | null;
 };
 
 export function buildTimelineView(
@@ -23,6 +24,7 @@ export function buildTimelineView(
         ...item,
         title: ref?.title ?? "Script",
         detail: ref?.content ?? "",
+        link: null,
       };
     }
     if (item.kind === "submission") {
@@ -31,6 +33,7 @@ export function buildTimelineView(
         ...item,
         title: ref?.title ?? "Performance",
         detail: [ref?.type, ref?.note, ref?.link].filter(Boolean).join(" · "),
+        link: ref?.link ?? null,
       };
     }
     const ref = activities.find((s) => s.id === item.ref_id);
@@ -38,6 +41,7 @@ export function buildTimelineView(
       ...item,
       title: ref?.title ?? "Activity",
       detail: ref?.description ?? "",
+      link: null,
     };
   });
 }

@@ -21,6 +21,7 @@ export default async function PresentPage({ params }: { params: { token: string 
       token={bundle.event.host_token}
       eventName={bundle.event.name}
       items={items}
+      liveItemId={bundle.event.live_item_id}
     />
   );
 }

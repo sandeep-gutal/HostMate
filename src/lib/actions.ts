@@ -15,10 +15,13 @@ import {
   deleteSubmission,
   getEventById,
   getEventByToken,
+  getPublicBundle,
   listParticipants,
+  listSubmissions,
   reorderSubmissions,
   reorderTimeline,
   replaceScriptSections,
+  setLiveState,
   toggleFavorite,
   updateScriptSection,
   updateSubmission,
@@ -208,6 +211,26 @@ export async function updateTimelineDurationAction(formData: FormData): Promise<
     num(formData.get("duration_minutes"))
   );
   revalidatePath(`/h/${token}`);
+}
+
+export async function setLiveItemAction(token: string, liveItemId: string | null, liveStatus: "idle" | "live" | "ended") {
+  const event = await getEventByToken(token);
+  if (!event) return { error: "Event not found." };
+  await setLiveState(event.id, liveItemId, liveStatus);
+  revalidatePath(`/h/${token}`);
+  revalidatePath(`/h/${token}/present`);
+  revalidatePath(`/e/${event.id}`);
+  return { ok: true };
+}
+
+export async function listQueueAction(token: string) {
+  const event = await getEventByToken(token);
+  if (!event) return [];
+  return listSubmissions(event.id);
+}
+
+export async function getPublicEventAction(eventId: string) {
+  return getPublicBundle(eventId);
 }
 
 export async function listPeopleAction(token: string) {

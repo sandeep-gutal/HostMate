@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Newsreader } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -13,11 +14,16 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: "HostMate",
-  description:
-    "Plan and run community events without an AI bill — scripts, songs, and a live run of show.",
+  description: "The run-of-show app for society functions — RSVPs, a live playlist, and presenter notes in one place.",
 };
 
 export default function RootLayout({
@@ -26,10 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("dark", geistSans.variable, geistMono.variable)}>
-      <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
-        {children}
-      </body>
+    <html lang="en" className={cn("dark", geistSans.variable, geistMono.variable, newsreader.variable)}>
+      <body className="min-h-dvh bg-background font-sans text-foreground antialiased">{children}</body>
     </html>
   );
 }

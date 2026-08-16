@@ -25,6 +25,8 @@ export type EventRow = {
   duration_minutes: number | null;
   host_token: string;
   template_id: string | null;
+  live_item_id: string | null;
+  live_status: string;
   created_at: string;
 };
 

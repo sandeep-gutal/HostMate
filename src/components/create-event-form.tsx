@@ -18,10 +18,10 @@ export function CreateEventForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Create an event</CardTitle>
+        <CardTitle className="font-display text-2xl">Create the event</CardTitle>
         <CardDescription>
-          You&apos;ll get a private host link (keep it secret) and a public link for guests. No
-          login.
+          You get a private organizer link and a public invite. Nothing lives only in this browser —
+          RSVPs, songs, and the run of show save to Postgres.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -175,7 +175,7 @@ export function CreateEventForm() {
           {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
           <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-            {pending ? "Creating…" : "Create event & get links"}
+            {pending ? "Creating…" : "Create event"}
           </Button>
         </form>
       </CardContent>
