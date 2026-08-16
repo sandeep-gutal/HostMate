@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
 
 type Sql = NeonQueryFunction<false, false>;
@@ -5,6 +6,7 @@ type Sql = NeonQueryFunction<false, false>;
 let sql: Sql | null = null;
 
 export function getSql(): Sql {
+  noStore();
   if (!sql) {
     const url = process.env.POSTGRES_URL || process.env.DATABASE_URL;
     if (!url) {

@@ -15,6 +15,7 @@ import {
   deleteSubmission,
   getEventById,
   getEventByToken,
+  listParticipants,
   reorderSubmissions,
   reorderTimeline,
   replaceScriptSections,
@@ -209,47 +210,65 @@ export async function updateTimelineDurationAction(formData: FormData): Promise<
   revalidatePath(`/h/${token}`);
 }
 
+export async function listPeopleAction(token: string) {
+  const event = await getEventByToken(token);
+  if (!event) return [];
+  return listParticipants(event.id);
+}
+
 export async function publicRsvpAction(formData: FormData) {
-  const eventId = str(formData.get("event_id"));
-  const event = await getEventById(eventId);
-  if (!event) return { error: "Event not found." };
-  const name = str(formData.get("name"));
-  if (!name) return { error: "Name is required." };
-  await addParticipant({
-    eventId: event.id,
-    name,
-    phone_or_email: str(formData.get("phone_or_email")) || null,
-    fun_fact: str(formData.get("fun_fact")) || null,
-    rsvp: str(formData.get("rsvp")) || "yes",
-  });
-  revalidatePath(`/e/${event.id}`);
-  return { ok: true, message: "RSVP saved. See you there!" };
+  try {
+    const eventId = str(formData.get("event_id"));
+    const event = await getEventById(eventId);
+    if (!event) return { error: "Event not found." };
+    const name = str(formData.get("name"));
+    if (!name) return { error: "Name is required." };
+    await addParticipant({
+      eventId: event.id,
+      name,
+      phone_or_email: str(formData.get("phone_or_email")) || null,
+      fun_fact: str(formData.get("fun_fact")) || null,
+      rsvp: str(formData.get("rsvp")) || "yes",
+    });
+    revalidatePath(`/e/${event.id}`);
+    revalidatePath(`/h/${event.host_token}`);
+    return { ok: true, message: "RSVP saved. The host will see you under People." };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Could not save RSVP.";
+    return { error: message };
+  }
 }
 
 export async function publicSubmitAction(formData: FormData) {
-  const eventId = str(formData.get("event_id"));
-  const event = await getEventById(eventId);
-  if (!event) return { error: "Event not found." };
-  const name = str(formData.get("name"));
-  const title = str(formData.get("title"));
-  if (!name || !title) return { error: "Name and title are required." };
-  const participant = await addParticipant({
-    eventId: event.id,
-    name,
-    phone_or_email: str(formData.get("phone_or_email")) || null,
-    fun_fact: str(formData.get("fun_fact")) || null,
-    rsvp: "yes",
-  });
-  await addSubmission({
-    eventId: event.id,
-    participantId: participant.id,
-    type: (str(formData.get("type")) as "song" | "performance" | "game") || "song",
-    title,
-    link: str(formData.get("link")) || null,
-    duration: num(formData.get("duration")),
-    note: null,
-    source: "participant",
-  });
-  revalidatePath(`/e/${event.id}`);
-  return { ok: true, message: "Submitted. The host will see it in the running order." };
+  try {
+    const eventId = str(formData.get("event_id"));
+    const event = await getEventById(eventId);
+    if (!event) return { error: "Event not found." };
+    const name = str(formData.get("name"));
+    const title = str(formData.get("title"));
+    if (!name || !title) return { error: "Name and title are required." };
+    const participant = await addParticipant({
+      eventId: event.id,
+      name,
+      phone_or_email: str(formData.get("phone_or_email")) || null,
+      fun_fact: str(formData.get("fun_fact")) || null,
+      rsvp: "yes",
+    });
+    await addSubmission({
+      eventId: event.id,
+      participantId: participant.id,
+      type: (str(formData.get("type")) as "song" | "performance" | "game") || "song",
+      title,
+      link: str(formData.get("link")) || null,
+      duration: num(formData.get("duration")),
+      note: null,
+      source: "participant",
+    });
+    revalidatePath(`/e/${event.id}`);
+    revalidatePath(`/h/${event.host_token}`);
+    return { ok: true, message: "Submitted. The host will see it in Songs and People." };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Could not save submission.";
+    return { error: message };
+  }
 }
