@@ -19,6 +19,12 @@ export function getSql(): Sql {
   return sql;
 }
 
-export function getConnectionUrl(): string | undefined {
-  return process.env.POSTGRES_URL || process.env.DATABASE_URL;
+let schemaReady = false;
+
+export async function ensureSchema() {
+  if (schemaReady) return;
+  const client = getSql();
+  await client`ALTER TABLE events ADD COLUMN IF NOT EXISTS live_item_id UUID`;
+  await client`ALTER TABLE events ADD COLUMN IF NOT EXISTS live_status TEXT NOT NULL DEFAULT 'idle'`;
+  schemaReady = true;
 }

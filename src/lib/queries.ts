@@ -1,5 +1,5 @@
 import { randomBytes } from "crypto";
-import { getSql } from "@/lib/db";
+import { getSql, ensureSchema } from "@/lib/db";
 import { getTemplate } from "@/lib/templates";
 import type {
   ActivityRow,
@@ -30,6 +30,8 @@ function asEvent(row: Record<string, unknown> | undefined): EventRow | null {
       row.duration_minutes == null ? null : Number(row.duration_minutes),
     host_token: String(row.host_token),
     template_id: row.template_id == null ? null : String(row.template_id),
+    live_item_id: row.live_item_id == null ? null : String(row.live_item_id),
+    live_status: String(row.live_status ?? "idle"),
     created_at:
       row.created_at instanceof Date
         ? row.created_at.toISOString()
@@ -38,6 +40,7 @@ function asEvent(row: Record<string, unknown> | undefined): EventRow | null {
 }
 
 export async function getEventByToken(token: string) {
+  await ensureSchema();
   const sql = getSql();
   const rows = await sql`
     SELECT * FROM events WHERE host_token = ${token} LIMIT 1
@@ -46,6 +49,7 @@ export async function getEventByToken(token: string) {
 }
 
 export async function getEventById(id: string) {
+  await ensureSchema();
   const sql = getSql();
   const rows = await sql`SELECT * FROM events WHERE id = ${id} LIMIT 1`;
   return asEvent(rows[0] as Record<string, unknown> | undefined);
@@ -62,6 +66,7 @@ export async function createEvent(input: {
   template_id: string | null;
 }) {
   const sql = getSql();
+  await ensureSchema();
   const host_token = newHostToken();
   const template = input.template_id ? getTemplate(input.template_id) : undefined;
 
@@ -351,6 +356,36 @@ export async function reorderSubmissions(eventId: string, ids: string[]) {
       UPDATE submissions SET order_index = ${i} WHERE id = ${ids[i]} AND event_id = ${eventId}
     `;
   }
+  const songItems = (await sql`
+    SELECT id, ref_id, order_index
+    FROM timeline_items
+    WHERE event_id = ${eventId} AND kind = 'submission'
+    ORDER BY order_index, id
+  `) as { id: string; ref_id: string; order_index: number }[];
+  const positions = songItems.map((item) => item.order_index);
+  const byRef = new Map(songItems.map((item) => [String(item.ref_id), item]));
+  for (let i = 0; i < ids.length; i++) {
+    const item = byRef.get(ids[i]);
+    if (!item || positions[i] == null) continue;
+    await sql`
+      UPDATE timeline_items
+      SET order_index = ${positions[i]}
+      WHERE id = ${item.id} AND event_id = ${eventId}
+    `;
+  }
+}
+
+export async function setLiveState(
+  eventId: string,
+  liveItemId: string | null,
+  liveStatus: "idle" | "live" | "ended"
+) {
+  const sql = getSql();
+  await sql`
+    UPDATE events
+    SET live_item_id = ${liveItemId}, live_status = ${liveStatus}
+    WHERE id = ${eventId}
+  `;
 }
 
 export async function listActivities(eventId: string) {
@@ -477,4 +512,27 @@ export async function getHostBundle(token: string) {
     listTimeline(event.id),
   ]);
   return { event, scripts, submissions, activities, participants, timeline };
+}
+
+export async function getPublicBundle(eventId: string) {
+  const event = await getEventById(eventId);
+  if (!event) return null;
+  const [submissions, timeline, participants, scripts, activities] = await Promise.all([
+    listSubmissions(event.id),
+    listTimeline(event.id),
+    listParticipants(event.id),
+    listScriptSections(event.id),
+    listActivities(event.id),
+  ]);
+  return {
+    event,
+    submissions,
+    timeline,
+    participants,
+    scripts: scripts.map((section) => ({ ...section, content: "" })),
+    activities: activities.map((activity) => ({
+      ...activity,
+      description: "",
+    })),
+  };
 }

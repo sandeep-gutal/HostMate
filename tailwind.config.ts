@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["Geist", "Geist Fallback", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Newsreader", "Georgia", "ui-serif", "serif"],
         mono: ["Geist Mono", "Geist Mono Fallback", "ui-monospace", "monospace"],
       },
       colors: {
