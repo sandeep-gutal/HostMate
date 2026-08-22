@@ -69,18 +69,21 @@ export function GuestPortal({
   return (
     <main className="mx-auto flex w-full max-w-lg flex-col gap-8 px-4 pb-16">
       <SiteHeader compact />
-      <header className="grid gap-3">
-        <p className="text-sm font-medium text-primary">You&apos;re invited</p>
-        <h1 className="font-display text-4xl leading-tight">{event.name}</h1>
+      <header className="grid gap-3 border-b border-white/[0.06] pb-6">
+        <span className="eyebrow w-fit text-[10px]">You&apos;re invited</span>
+        <h1 className="font-display text-4xl leading-tight tracking-tight">{event.name}</h1>
         <p className="text-muted-foreground">
           {dateLabel} · {event.type}
         </p>
-        <p className="text-sm text-muted-foreground">{going} going · no account needed</p>
+        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-secondary/80 px-3 py-1 text-sm text-muted-foreground">
+          <span className="size-1.5 rounded-full bg-emerald-400" />
+          {going} going · no account needed
+        </p>
       </header>
 
       {event.live_status === "live" && live ? (
-        <section className="grid gap-3 rounded-2xl border border-primary/30 bg-primary/10 p-4">
-          <p className="text-xs uppercase tracking-wide text-primary">Happening now</p>
+        <section className="surface-card border-primary/30 bg-gradient-to-br from-primary/15 to-transparent p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">Happening now</p>
           <h2 className="font-display text-2xl">{live.title}</h2>
           {youtubeIdFromUrl(live.link) ? (
             <YouTubePlayer url={live.link} title={live.title} autoplay />
@@ -90,7 +93,8 @@ export function GuestPortal({
         </section>
       ) : null}
 
-      <Card>
+      <Card className="surface-card overflow-hidden">
+        <div className="h-0.5 bg-gradient-to-r from-primary/60 via-primary/30 to-transparent" />
         <CardContent className="grid gap-4 p-5">
           <div>
             <h2 className="font-display text-2xl">Are you coming?</h2>
@@ -109,7 +113,7 @@ export function GuestPortal({
             }}
           >
             <input type="hidden" name="event_id" value={event.id} />
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-1 rounded-xl border border-white/[0.08] bg-muted/60 p-1">
               {[
                 ["yes", "Going"],
                 ["maybe", "Maybe"],
@@ -119,8 +123,8 @@ export function GuestPortal({
                   key={value}
                   type="button"
                   onClick={() => setRsvp(value)}
-                  className={`rounded-full px-3 py-2 text-sm ${
-                    rsvp === value ? "bg-primary text-primary-foreground" : "bg-secondary"
+                  className={`segmented-btn ${
+                    rsvp === value ? "segmented-btn-active" : "segmented-btn-inactive"
                   }`}
                 >
                   {label}
@@ -147,7 +151,8 @@ export function GuestPortal({
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="surface-card overflow-hidden">
+        <div className="h-0.5 bg-gradient-to-r from-primary/60 via-primary/30 to-transparent" />
         <CardContent className="grid gap-4 p-5">
           <div>
             <h2 className="font-display text-2xl">Send a song</h2>
@@ -194,8 +199,8 @@ export function GuestPortal({
           <p className="text-sm text-muted-foreground">Be the first to add a song.</p>
         ) : (
           queue.map((song, index) => (
-            <div key={song.id} className="flex items-center gap-3 rounded-2xl border bg-card/80 p-3">
-              <span className="grid size-8 place-items-center rounded-full bg-secondary text-xs">
+            <div key={song.id} className="surface-card flex items-center gap-3 p-3">
+              <span className="grid size-9 place-items-center rounded-xl bg-primary/15 text-xs font-semibold text-primary">
                 {index + 1}
               </span>
               <div className="min-w-0">
