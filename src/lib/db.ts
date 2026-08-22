@@ -24,7 +24,18 @@ let schemaReady = false;
 export async function ensureSchema() {
   if (schemaReady) return;
   const client = getSql();
-  await client`ALTER TABLE events ADD COLUMN IF NOT EXISTS live_item_id UUID`;
-  await client`ALTER TABLE events ADD COLUMN IF NOT EXISTS live_status TEXT NOT NULL DEFAULT 'idle'`;
-  schemaReady = true;
+  try {
+    await client`ALTER TABLE events ADD COLUMN IF NOT EXISTS live_item_id UUID`;
+    await client`ALTER TABLE events ADD COLUMN IF NOT EXISTS live_status TEXT NOT NULL DEFAULT 'idle'`;
+    schemaReady = true;
+  } catch (err) {
+    schemaReady = false;
+    const message = err instanceof Error ? err.message : "Database schema check failed.";
+    if (/relation "events" does not exist/i.test(message)) {
+      throw new Error(
+        "Database tables are missing. Run npm run db:setup (or npm run db:migrate) against your Postgres database."
+      );
+    }
+    throw err;
+  }
 }

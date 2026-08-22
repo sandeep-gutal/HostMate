@@ -38,22 +38,45 @@ function str(value: FormDataEntryValue | null): string {
   return String(value ?? "").trim();
 }
 
+function isNextRedirect(err: unknown): boolean {
+  return (
+    typeof err === "object" &&
+    err !== null &&
+    "digest" in err &&
+    String((err as { digest: string }).digest).startsWith("NEXT_REDIRECT")
+  );
+}
+
 export async function createEventAction(formData: FormData) {
   const name = str(formData.get("name"));
   if (!name) return { error: "Give the event a name." };
 
-  const event = await createEvent({
-    name,
-    type: str(formData.get("type")) || "Custom",
-    date: str(formData.get("date")) || null,
-    tone: str(formData.get("tone")) || "casual",
-    language: str(formData.get("language")) || "English",
-    expected_audience: num(formData.get("expected_audience")),
-    duration_minutes: num(formData.get("duration_minutes")),
-    template_id: str(formData.get("template_id")) || null,
-  });
+  try {
+    const event = await createEvent({
+      name,
+      type: str(formData.get("type")) || "Custom",
+      date: str(formData.get("date")) || null,
+      tone: str(formData.get("tone")) || "casual",
+      language: str(formData.get("language")) || "English",
+      expected_audience: num(formData.get("expected_audience")),
+      duration_minutes: num(formData.get("duration_minutes")),
+      template_id: str(formData.get("template_id")) || null,
+    });
 
-  redirect(`/h/${event.host_token}`);
+    redirect(`/h/${event.host_token}`);
+  } catch (err) {
+    if (isNextRedirect(err)) throw err;
+    const message = err instanceof Error ? err.message : "Could not create event.";
+    if (/POSTGRES_URL|DATABASE_URL/i.test(message)) {
+      return {
+        error: "Database not configured. Set DATABASE_URL (or POSTGRES_URL) and run npm run db:setup.",
+      };
+    }
+    if (/relation .* does not exist|column .* does not exist/i.test(message)) {
+      return { error: "Database schema is out of date. Run npm run db:setup, then try again." };
+    }
+    return { error: message };
+  }
 }
 
 export async function savePastedScriptAction(formData: FormData): Promise<void> {
