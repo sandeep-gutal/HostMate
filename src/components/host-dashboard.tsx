@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { ListMusic, Radio, Users, type LucideIcon } from "lucide-react";
 import { ActivitiesPanel } from "@/components/activities-panel";
 import { CopyButton } from "@/components/copy-button";
 import { PeoplePanel } from "@/components/people-panel";
@@ -55,24 +56,24 @@ export function HostDashboard({
   const playing = submissions.find((s) => s.id === playingId) ?? playable[0];
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pb-24">
+    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-24">
       <SiteHeader compact />
-      <header className="grid gap-2">
-        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">Organizer</p>
-        <h1 className="font-display text-3xl leading-tight sm:text-4xl">{event.name}</h1>
+      <header className="grid gap-2 border-b border-white/[0.06] pb-6">
+        <span className="eyebrow w-fit text-[10px]">Organizer desk</span>
+        <h1 className="font-display text-3xl leading-tight tracking-tight sm:text-4xl">{event.name}</h1>
         <p className="text-sm text-muted-foreground">
           {event.type}
           {event.date ? ` · ${event.date}` : ""} · {event.language}
         </p>
       </header>
 
-      <div className="grid grid-cols-3 gap-2">
-        <Stat label="Going" value={String(going)} />
-        <Stat label="Maybe" value={String(maybe)} />
-        <Stat label="On the list" value={String(submissions.length)} />
+      <div className="grid grid-cols-3 gap-3">
+        <Stat icon={Users} label="Going" value={String(going)} />
+        <Stat icon={Radio} label="Maybe" value={String(maybe)} />
+        <Stat icon={ListMusic} label="On the list" value={String(submissions.length)} />
       </div>
 
-      <Card className="overflow-hidden">
+      <Card className="surface-card overflow-hidden border-primary/10">
         <CardContent className="grid gap-4 p-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
@@ -98,9 +99,9 @@ export function HostDashboard({
       </Card>
 
       {event.live_status === "live" && liveItem ? (
-        <div className="rounded-2xl border border-primary/30 bg-primary/10 p-4">
-          <p className="text-xs uppercase tracking-wide text-primary">Now on stage</p>
-          <p className="mt-1 font-medium">{liveItem.title}</p>
+        <div className="surface-card border-primary/30 bg-gradient-to-r from-primary/15 to-primary/5 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">Now on stage</p>
+          <p className="mt-1 text-lg font-medium">{liveItem.title}</p>
         </div>
       ) : null}
 
@@ -142,8 +143,8 @@ export function HostDashboard({
         <TabsContent value="home" className="grid gap-4">
           <h2 className="font-display text-xl">Up next</h2>
           {items.slice(0, 4).map((item, index) => (
-            <div key={item.id} className="flex gap-3 rounded-2xl border bg-card/80 p-3">
-              <span className="grid size-8 place-items-center rounded-full bg-secondary text-xs">
+            <div key={item.id} className="surface-card flex gap-3 p-3">
+              <span className="grid size-9 place-items-center rounded-xl bg-primary/15 text-xs font-semibold text-primary ring-1 ring-primary/20">
                 {index + 1}
               </span>
               <div className="min-w-0">
@@ -180,11 +181,21 @@ export function HostDashboard({
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({
+  label,
+  value,
+  icon: Icon,
+}: {
+  label: string;
+  value: string;
+  icon: LucideIcon;
+}) {
   return (
-    <div className="rounded-2xl border bg-card/80 p-3">
-      <p className="text-2xl font-medium">{value}</p>
-      <p className="text-xs text-muted-foreground">{label}</p>
+    <div className="surface-card relative overflow-hidden p-4">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <Icon className="mb-2 size-4 text-primary" strokeWidth={2} />
+      <p className="text-2xl font-semibold tracking-tight">{value}</p>
+      <p className="text-xs font-medium text-muted-foreground">{label}</p>
     </div>
   );
 }
